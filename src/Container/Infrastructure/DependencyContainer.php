@@ -48,6 +48,8 @@ final class DependencyContainer implements DependencyInjectionContainer
     {
         $this->definitions[$className] = function () use ($className, $definition) {
             $this->singletons[$className] = $definition($this);
+
+            return $this->singletons[$className];
         };
 
         return $this;
