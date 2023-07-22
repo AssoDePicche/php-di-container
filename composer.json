@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Container\\": "src/Container/"
+            "Container\\": "src/Container/",
+            "Mock\\": "tests/Mock"
         }
     },
     "require-dev": {
