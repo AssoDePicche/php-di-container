@@ -29,4 +29,14 @@ final class DependencyContainerTest extends TestCase
 
         $this->assertInstanceOf($className, $object);
     }
+
+    #[Test]
+    public function autowire(): void
+    {
+        $className = stdClass::class;
+
+        $object = $this->container->get($className);
+
+        $this->assertInstanceOf($className, $object);
+    }
 }
