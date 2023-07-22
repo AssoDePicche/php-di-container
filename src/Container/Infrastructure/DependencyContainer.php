@@ -32,9 +32,9 @@ final class DependencyContainer implements DependencyInjectionContainer
             return $instance;
         }
 
-        $definition = $this->definitions[$className] ?? $this->autowire($className);
+        $definition = $this->definitions[$className] ?? $this->autowire(...);
 
-        return $definition();
+        return $definition($className);
     }
 
     public function set(string $className, callable $definition): self
