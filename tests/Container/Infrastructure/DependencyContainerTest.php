@@ -12,6 +12,12 @@ use stdClass;
 
 final class DependencyContainerTest extends TestCase
 {
+    private string  $className = stdClass::class;
+
+    private string $singletonClassName = SingletonClass::class;
+
+    private int $expectedInstancesCount = 1;
+
     private DependencyInjectionContainer $container;
 
     public function setUp(): void
@@ -20,40 +26,36 @@ final class DependencyContainerTest extends TestCase
     }
 
     #[Test]
-    public function dependenciesContainerization(): void
+    public function autowire(): void
     {
-        $className = stdClass::class;
+        $object = $this->container->get($this->className);
 
-        $this->container->set($className, fn () => new $className);
-
-        $object = $this->container->get($className);
-
-        $this->assertInstanceOf($className, $object);
+        $this->assertInstanceOf($this->className, $object);
     }
 
     #[Test]
-    public function autowire(): void
+    public function dependenciesContainerization(): void
     {
-        $className = stdClass::class;
+        $this->container->set($this->className, fn () => new $this->className);
 
-        $object = $this->container->get($className);
+        $object = $this->container->get($this->className);
 
-        $this->assertInstanceOf($className, $object);
+        $this->assertInstanceOf($this->className, $object);
     }
 
     #[Test]
     public function singleton(): void
     {
-        $this->container->singleton(SingletonClass::class, fn () => new SingletonClass);
+        $this->container->singleton($this->singletonClassName, fn () => new $this->singletonClassName);
 
-        $object = $this->container->get(SingletonClass::class);
+        $object = $this->container->get($this->singletonClassName);
 
-        $this->assertInstanceOf(SingletonClass::class, $object);
+        $this->assertInstanceOf($this->singletonClassName, $object);
 
-        $this->assertSame(1, $object::getInstancesCount());
+        $this->assertSame($this->expectedInstancesCount, $object::getInstancesCount());
 
-        $sameObject = $this->container->get(SingletonClass::class);
+        $sameObject = $this->container->get($this->singletonClassName);
 
-        $this->assertSame(1, $sameObject::getInstancesCount());
+        $this->assertSame($this->expectedInstancesCount, $sameObject::getInstancesCount());
     }
 }
