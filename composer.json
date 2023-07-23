@@ -1,9 +1,19 @@
 {
+    "authors": [{
+        "name": "Samuel do Prado Rodrigues",
+        "email": "samuelprado730@gmail.com"
+    }],
+    "name": "assodepicche/php-di-container",
+    "description": "A PHP Dependency Injection Container",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Container\\": "src/Container/",
             "Mock\\": "tests/Mock"
         }
+    },
+    "require": {
+        "php": ">=8.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.2"
