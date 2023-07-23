@@ -5,7 +5,7 @@
     }],
     "name": "assodepicche/php-di-container",
     "description": "A PHP Dependency Injection Container",
-    "license": "The Unlicense",
+    "license": "Unlicense",
     "type": "library",
     "autoload": {
         "psr-4": {
