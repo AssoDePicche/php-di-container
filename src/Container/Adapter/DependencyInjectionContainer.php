@@ -15,6 +15,8 @@ interface DependencyInjectionContainer
      */
     public function get(string $className): object;
 
+    public function has(string $className): bool;
+
     public function set(string $className, callable $definition): self;
 
     public function singleton(string $className, callable $definition): self;
