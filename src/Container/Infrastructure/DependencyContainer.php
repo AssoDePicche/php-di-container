@@ -37,6 +37,11 @@ final class DependencyContainer implements DependencyInjectionContainer
         return $definition($className);
     }
 
+    public function has(string $className): bool
+    {
+        return isset($this->definitions[$className]) || isset($this->singletons[$className]);
+    }
+
     public function set(string $className, callable $definition): self
     {
         $this->definitions[$className] = $definition;
