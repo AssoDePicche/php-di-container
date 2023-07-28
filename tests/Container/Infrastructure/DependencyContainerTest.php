@@ -44,6 +44,16 @@ final class DependencyContainerTest extends TestCase
     }
 
     #[Test]
+    public function has(): void
+    {
+        $this->container->set($this->className, fn () => new $this->className);
+
+        $this->assertTrue($this->container->has($this->className));
+
+        $this->assertFalse($this->container->has($this->singletonClassName));
+    }
+
+    #[Test]
     public function singleton(): void
     {
         $this->container->singleton($this->singletonClassName, fn () => new $this->singletonClassName);
