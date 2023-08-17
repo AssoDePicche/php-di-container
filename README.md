@@ -144,7 +144,7 @@ $container = new DependencyContainer;
 Use the `set` method to set the definition of a class
 
 ```php
-$containter->set(Foo::class, fn () => new Foo);
+$container->set(Foo::class, fn () => new Foo);
 ```
 
 Call the defined class with the get method whenever you want
@@ -161,7 +161,7 @@ $container->singleton(SingletonClass::class);
 
 ### Contributing
 
-To contribuit to this project [follow these steps](./CONTRIBUTING).
+To contribute to this project [follow these steps](./CONTRIBUTING).
 
 ### Get in Touch
 
