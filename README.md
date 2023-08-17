@@ -42,6 +42,8 @@ interface DependencyInjectionContainer
      */
     public function get(string $className): object;
 
+    public function has(string $className): bool;
+
     public function set(string $className, callable $definition): self;
 
     public function singleton(string $className, callable $definition): self;
@@ -90,6 +92,11 @@ final class DependencyContainer implements DependencyInjectionContainer
         $definition = $this->definitions[$className] ?? $this->autowire(...);
 
         return $definition($className);
+    }
+
+    public function has(string $className): bool
+    {
+        return isset($this->definitions[$className]) || isset($this->singletons[$className]);
     }
 
     public function set(string $className, callable $definition): self
@@ -151,6 +158,12 @@ Call the defined class with the get method whenever you want
 
 ```php
 $object = $container->get(Foo::class);
+```
+
+Use the `has` method to find out if an interface has been defined in the container
+
+```php
+var_dump($container->has(Foo::class)); // true
 ```
 
 **Obs:** to make a class a singleton, use the singleton method
