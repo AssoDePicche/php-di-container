@@ -169,7 +169,7 @@ var_dump($container->has(Foo::class)); // true
 **Obs:** to make a class a singleton, use the singleton method
 
 ```php
-$container->singleton(SingletonClass::class);
+$container->singleton(Singleton::class, fn () => new SingletonClass);
 ```
 
 ### Contributing
